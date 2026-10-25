@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Number of columns in dock and grid -->
+    <integer name="columns">4</integer>
+
+    <!-- Dock apps: package names in order, comma-separated.
+         Change this list to customize your dock. -->
+    <string name="dock_apps">com.google.android.youtube.tv,com.netflix.ninja,org.xbmc.kodi,com.google.android.tv.settings</string>
+
+    <!-- Power-on behavior: set exactly one to true, or both false for stock -->
+    <bool name="power_on_home">false</bool>
+    <bool name="boot_to_live_tv">false</bool>
+
+    <!-- Key service helpers (enable if remote buttons stop working after stock launcher disabled) -->
+    <!-- INPUT_KEY_SERVICE: remap Netflix/YouTube/etc hardware buttons -->
+    <bool name="input_key_service">false</bool>
+    <!-- HOME_KEY_SERVICE: remap Settings/Dashboard button to this launcher -->
+    <bool name="home_key_service">false</bool>
+
+    <!-- Comma-separated keycodes for input_key_service -->
+    <string name="input_key_keycodes"></string>
+    <!-- Comma-separated keycodes for settings button -->
+    <string name="settings_key_keycodes"></string>
+    <!-- Comma-separated scancodes (for KEY_UNKNOWN buttons) -->
+    <string name="settings_key_scancodes"></string>
+
+    <!-- App keys: packageName=keycode pairs, comma-separated -->
+    <string name="app_keys"></string>
+</resources>
