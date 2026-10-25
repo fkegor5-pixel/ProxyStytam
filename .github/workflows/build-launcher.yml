@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'launcher/**'
+      - '.github/workflows/build-launcher.yml'
   workflow_dispatch:
 
 jobs:
