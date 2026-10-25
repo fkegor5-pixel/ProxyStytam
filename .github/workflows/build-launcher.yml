@@ -23,17 +23,29 @@ jobs:
         run: |
           echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-33" "build-tools;33.0.2"
 
-      - name: Build debug APK
+      - name: Build release APKs
         working-directory: launcher
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          ./gradlew assembleRelease --no-daemon
         env:
           ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
 
-      - name: Upload APK
+      - name: Verify APKs
+        run: |
+          BT=$ANDROID_HOME/build-tools/33.0.2
+          mkdir out
+          cp launcher/app/build/outputs/apk/home/release/app-home-release.apk out/ProxyLauncher.apk
+          cp launcher/app/build/outputs/apk/plain/release/app-plain-release.apk out/ProxyLauncher-TEST.apk
+          for f in out/*.apk; do
+            echo "== $f"
+            $BT/apksigner verify --verbose "$f"
+            $BT/aapt2 dump badging "$f" | grep -E "^(package|sdkVersion|targetSdkVersion|application-debuggable|native-code)"
+          done
+
+      - name: Upload APKs
         uses: actions/upload-artifact@v4
         with:
-          name: ProxyLauncher-debug
-          path: launcher/app/build/outputs/apk/debug/*.apk
+          name: ProxyLauncher
+          path: out/*.apk
           retention-days: 30
