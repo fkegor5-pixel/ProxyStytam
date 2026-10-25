@@ -8,7 +8,8 @@ android {
 
     defaultConfig {
         applicationId "com.proxystytam.launcher"
-        minSdk 26
+        // below 24 so AGP keeps v1 (JAR) signing; some TCL installers reject v2-only APKs
+        minSdk 23
         targetSdk 33
         versionCode 1
         versionName "1.0"
