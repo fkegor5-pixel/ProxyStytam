@@ -26,10 +26,10 @@ jobs:
       - name: Build debug APK
         working-directory: launcher
         run: |
-          chmod +x gradlew 2>/dev/null || true
-          gradle assembleDebug --no-daemon
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
         env:
-          ANDROID_SDK_ROOT: ${{ env.ANDROID_HOME }}
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
